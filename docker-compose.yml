@@ -1,0 +1,18 @@
+version: '2'
+services:
+  home-automation-server:
+  	image: "jluccisano/home-automation-server:latest"
+  	ports:
+      - "8514:8514"
+    volumes:
+      - './resources/private-key:/go/src/app/keys/private-key.rsa:ro'
+      - './resources/public-key.pub:/go/src/app/keys/public-key.rsa.pub:ro'
+      - './resources/conf.yml:/go/src/app/conf/conf.yml:ro'
+  home-automation-webapp:
+  	image: "jluccisano/home-automation-webapp:latest"
+  	ports:
+      - "8513:80"
+    links:
+       - "home-automation-server:home-automation-server"
+     depends_on:
+       - "home-automation-server"

@@ -1,0 +1,9 @@
+- config:
+    - testset: "Test Full Home Automation API"
+- test:
+    - name: "Authentification"
+    - url: "http://localhost:8513/authenticate/"
+    - method: "POST"
+    - body: '{"username": "foo","password": "bar"}'
+    - headers: {Content-Type: application/json}
+    - expected_status: [200]
